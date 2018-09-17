@@ -13,8 +13,10 @@ bool write_ppm(
   assert(
     (num_channels == 3 || num_channels ==1 ) &&
     ".ppm only supports RGB or grayscale images");
-  ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
-  return false;
-  ////////////////////////////////////////////////////////////////////////////
+  if (num_channels == 3) {
+    
+  }
+  if (num_channels == 1) {
+    
+  }
 }
