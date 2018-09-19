@@ -11,7 +11,7 @@ void reflect(
   for(int y = 0; y < height; y++) {
     for(int x = 0; x < width; x++) {
       for(int i = 0; i < num_channels; i++){
-        reflected[i + num_channels*((2*width - x) * y)] = input[i + num_channels*((x+width)*y)];
+        reflected[i + num_channels*(y+width * (width-x))] = input[i + num_channels*(y+width*x)];
       }
     }
   }

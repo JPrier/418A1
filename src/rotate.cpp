@@ -8,7 +8,11 @@ void rotate(
   std::vector<unsigned char> & rotated)
 {
   rotated.resize(height*width*num_channels);
-  ////////////////////////////////////////////////////////////////////////////
-  // Add your code here
-  ////////////////////////////////////////////////////////////////////////////
+  for(int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      for(int i = 0; i < num_channels; i++){
+        rotated[i + num_channels*(x+width*y)] = input[i + num_channels*(y+width*x)];
+      }
+    }
+  }
 }
