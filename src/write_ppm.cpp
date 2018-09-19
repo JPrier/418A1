@@ -13,22 +13,23 @@ bool write_ppm(
   assert(
     (num_channels == 3 || num_channels ==1 ) &&
     ".ppm only supports RGB or grayscale images");
-  // open file
   std::ofstream file;
   file.open(filename.c_str(), std::ios::out | std::ios::binary);
-  // write P3
+  if (!file) { return false; }
   file << "P" << 3 << "\n";
-  // write width space height
   file << width << " " << height << "\n";
-  // write 255
   file << 255 << "\n";
-  // write all data space r space g space b space all casted as int
-  for (int i = 0;  i < width*height; i++) {
-    for (int nc = 0; nc < num_channels; nc++) {
-      file << " " << (int)data[i+nc];
+  if (num_channels == 3) {
+    for (int i = 0;  i < width*height; i++) {
+      file << " " << (int)data[i*3] << " " << (int)data[i*3+1] << " " << (int)data[i*3+2] << " "; 
     }
-    file << " "; 
+  } else if (num_channels == 1) {
+    for (int i = 0;  i < width*height; i++) {
+      file << " " << (int)data[i] << " " << (int)data[i] << " " << (int)data[i] << " "; 
+    }
   }
+
+
   file.close;
   return true;
 }
