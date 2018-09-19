@@ -8,10 +8,22 @@ void rgb_to_hsv(
   double & s,
   double & v)
 {
-  ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
-  h = 0;
-  s = 0;
-  v = 0;
-  ////////////////////////////////////////////////////////////////////////////
+  double max_rgb = max(r, max(g, b));
+  double min_rgb = min(r, min(g, b));
+  double max_min = max_rgb - min_rgb;
+  //h
+  if (r == g && r == b) {
+    h = 0;
+    s = 0;
+  } else {
+    if (max_rgb == r){
+      h = 60*((g-b)/max_min);
+    } else if (max_rgb == g) {
+      h = 60*((b-r)/max_min);
+    } else if (max_rgb == b) {
+      h = 60*((r-g)/max_min);
+    }
+    s = max_min/max;
+  }
+  v = max_rgb;
 }
