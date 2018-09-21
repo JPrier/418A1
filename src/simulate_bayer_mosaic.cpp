@@ -19,7 +19,7 @@ void simulate_bayer_mosaic(
         if (x % 2 == 0) {
           bayer[x+width*y] = rgb[3*(x+width*y)];
         } else {
-          bayer[x+width*y] = rgb[1+3*(X+width*y)];
+          bayer[x+width*y] = rgb[1+3*(x+width*y)];
         }
       }
     }
