@@ -1,4 +1,5 @@
 #include "rgb_to_hsv.h"
+#include <algorithm>
 
 void rgb_to_hsv(
   const double r,
@@ -8,8 +9,8 @@ void rgb_to_hsv(
   double & s,
   double & v)
 {
-  double max_rgb = max(r, max(g, b));
-  double min_rgb = min(r, min(g, b));
+  double max_rgb = std::max(r, std::max(g, b));
+  double min_rgb = std::min(r, std::min(g, b));
   double max_min = max_rgb - min_rgb;
   //h
   if (r == g && r == b) {
@@ -23,7 +24,7 @@ void rgb_to_hsv(
     } else if (max_rgb == b) {
       h = 60*((r-g)/max_min);
     }
-    s = max_min/max;
+    s = max_min/max_rgb;
   }
   v = max_rgb;
 }

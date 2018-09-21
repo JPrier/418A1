@@ -28,6 +28,6 @@ bool write_ppm(
       file << " " << (int)data[i] << " " << (int)data[i] << " " << (int)data[i] << " "; 
     }
   }
-  file.close;
+  file.close();
   return true;
 }

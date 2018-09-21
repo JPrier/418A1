@@ -8,11 +8,10 @@ void reflect(
   std::vector<unsigned char> & reflected)
 {
   reflected.resize(width*height*num_channels);
-  for(int y = 0; y < height; y++) {
-    for(int x = 0; x < width; x++) {
-      for(int i = 0; i < num_channels; i++){
-        reflected[i + num_channels*(y+width * (width-x))] = input[i + num_channels*(y+width*x)];
-      }
-    }
+  for(int i = 0; i < width*height; i++) {
+    	int index = width - 1 - i + (i/width)*width*2;
+	for (int n = 0; n < num_channels; n++) {
+		reflected[num_channels*index+n] = input[num_channels*i+n];
+	}
   }
 }

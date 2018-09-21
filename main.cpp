@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
   write_ppm("reflected.ppm",reflected,width,height,3);
 
   // Rotation
-  std::vector<unsigned char> rotated;
-  rotate(rgb,width,height,3,rotated);
-  write_ppm("rotated.ppm",rotated,height,width,3);
+  //std::vector<unsigned char> rotated;
+  //rotate(rgb,width,height,3,rotated);
+  //write_ppm("rotated.ppm",rotated,height,width,3);
 
   // Convert to gray
   std::vector<unsigned char> gray;
@@ -57,26 +57,26 @@ int main(int argc, char *argv[])
   write_ppm("gray.ppm",gray,width,height,1);
 
   // Create fake bayer mosaic image
-  std::vector<unsigned char> bayer;
-  simulate_bayer_mosaic(rgb,width,height,bayer);
-  write_ppm("bayer.ppm",bayer,width,height,1);
+  //std::vector<unsigned char> bayer;
+  //simulate_bayer_mosaic(rgb,width,height,bayer);
+  //write_ppm("bayer.ppm",bayer,width,height,1);
 
   // Demosaic that output
-  std::vector<unsigned char> demosaicked;
-  demosaic(bayer,width,height,demosaicked);
-  write_ppm("demosaicked.ppm",demosaicked,width,height,3);
+  //std::vector<unsigned char> demosaicked;
+  //demosaic(bayer,width,height,demosaicked);
+  //write_ppm("demosaicked.ppm",demosaicked,width,height,3);
 
   // Shift the hue of the image by 180°
-  std::vector<unsigned char> shifted;
-  hue_shift(rgb,width,height,180.0,shifted);
-  write_ppm("shifted.ppm",shifted,width,height,3);
+  //std::vector<unsigned char> shifted;
+  //hue_shift(rgb,width,height,180.0,shifted);
+  //write_ppm("shifted.ppm",shifted,width,height,3);
 
   // Partially desaturate an image by 25%
-  std::vector<unsigned char> desaturated;
-  desaturate(rgb,width,height,0.25,desaturated);
-  write_ppm("desaturated.ppm",desaturated,width,height,3);
+  //std::vector<unsigned char> desaturated;
+  //desaturate(rgb,width,height,0.25,desaturated);
+  //write_ppm("desaturated.ppm",desaturated,width,height,3);
 
-  // Alpha composite multiple images (if present)
+  /* Alpha composite multiple images (if present)
   std::vector<unsigned char> composite_rgba;
   read_rgba_from_png(input_filenames[0],composite_rgba,width,height);
   for(int f = 1;f<num_inputs;f++)
@@ -91,4 +91,4 @@ int main(int argc, char *argv[])
   std::vector<unsigned char> composite;
   rgba_to_rgb(composite_rgba,width,height,composite);
   write_ppm("composite.ppm",composite,width,height,3);
-}
+*/}
