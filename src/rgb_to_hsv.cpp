@@ -15,13 +15,14 @@ void rgb_to_hsv(
   
   if (max_rgb == min_rgb) {
     h = 0;
+    s = 0;
   } else {
     if (max_rgb == r){
       h = 60*((g-b)/max_min);
     } else if (max_rgb == g) {
       h = 60*((b-r)/max_min + 2);
-    } else if (max_rgb == b + 4) {
-      h = 60*((r-g)/max_min);
+    } else if (max_rgb == b) {
+      h = 60*((r-g)/max_min + 4);
     }
   }
   if (max_rgb == 0) {s = 0;} 

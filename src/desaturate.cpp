@@ -22,6 +22,6 @@ void desaturate(
     hsv_to_rgb(h,s,v,r,g,b);
     desaturated[3*i] = r;
     desaturated[1+3*i] = g;
-    desaturated[1+3*i] = b;
+    desaturated[2+3*i] = b;
   }
 }
