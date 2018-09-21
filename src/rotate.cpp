@@ -8,13 +8,15 @@ void rotate(
   const int num_channels,
   std::vector<unsigned char> & rotated)
 {
+  int i = 0;
   rotated.resize(height*width*num_channels);
-  for(int y = 0; y < height; y++) {
-  	for (int x = 0; x < width; x++) {
-    		int index =  x + (height*y-1);
-      	for (int n = 0; n < num_channels; n++) {
-  			     rotated[n+num_channels*index] = input[n+num_channels*(y+width*x)];
-  		}
-  	}
+  for(int x = width; x > 0; x--) {
+    for (int y = 0; y < height; y++) {
+      int index =  x-1+y*width;//y + (width*x-1);
+      for (int n = 0; n < num_channels; n++) {
+	rotated[n+num_channels*i] = input[n+num_channels*index];
+      }
+      i++;
+    }
   }
 }
