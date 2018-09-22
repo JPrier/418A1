@@ -17,6 +17,7 @@ void demosaic(
       int gavg = 0;
       int bavg = 0;
       //calc every index
+      curr_index = x+width*y;
       int tl = curr_index - width - 1;
       int t = curr_index - width;
       int tr = curr_index - width + 1;
@@ -33,7 +34,7 @@ void demosaic(
 	    ramt += 1;
 	    ravg += bayer[t];
 	  }
-	  if (y!=height-1) {
+	  if (y!=height) {
 	    //not bottom
 	    ramt += 1;
 	    ravg += bayer[b];
@@ -43,14 +44,14 @@ void demosaic(
 	    bamt += 1;
 	    bavg += bayer[l];
 	  }
-	  if (x != width-1) {
+	  if (x != width) {
 	    //not right
 	    bamt += 1;
 	    bavg += bayer[r];
 	  }
 	  if (ramt != 0) {
             ravg = ravg/ramt;
-          }
+          } else {ravg = 0;}
           if (bamt != 0) {
             bavg = bavg/bamt;
           }
@@ -63,7 +64,7 @@ void demosaic(
 	    if (x!=0) {
 	      ramt += 1;
 	      ravg += bayer[tl];
-	    }
+	    } 
 	    if (x != width-1) {
 	      ramt += 1;
 	      ravg += bayer[tr];
@@ -76,7 +77,7 @@ void demosaic(
 	      ramt += 1;
 	      ravg += bayer[bl];
 	    }
-	    if (x != width-1) {
+	    if (x != width) {
 	      ramt += 1;
 	      ravg += bayer[br];
 	    }
@@ -87,17 +88,17 @@ void demosaic(
 	    gamt += 1;
 	    gavg += bayer[l];
 	  }
-	  if (x!=width-1) {
+	  if (x!=width) {
 	    gamt += 1;
 	    gavg += bayer[r];
 	  }
 	}
 	if (ramt != 0) {
             ravg = ravg/ramt;
-        }
+        } else {ravg = 0;}
         if (gamt != 0) {
             gavg = gavg/gamt;
-        }
+        } else {gavg = 0;}
         rgb[3*curr_index] = ravg;
         rgb[1+3*curr_index] = gavg;
         rgb[2+3*curr_index] = bayer[curr_index];
@@ -109,19 +110,19 @@ void demosaic(
 	      bamt += 1;
 	      bavg += bayer[tl];
 	    }
-	    if (x != width-1) {
+	    if (x != width) {
 	      bamt += 1;
 	      bavg += bayer[tr];
 	    }
 	    gamt += 1;
 	    gavg += bayer[t];
 	  }
-	  if (y!=height-1) {
+	  if (y!=height) {
 	    if (x!=0) {
 	      bamt += 1;
 	      bavg += bayer[bl];
 	    }
-	    if (x!=width-1) {
+	    if (x!=width) {
 	      bamt += 1;
 	      bavg += bayer[br];
 	    }
@@ -132,16 +133,16 @@ void demosaic(
 	    gamt += 1;
 	    gavg += bayer[l];
 	  }
-	  if (x!=width-1) {
+	  if (x!=width) {
 	    gamt += 1;
 	    gavg += bayer[r];
 	  }
 	  if (gamt != 0) {
             gavg = gavg/gamt;
-          }
+          } else {gavg = 0;}
           if (bamt != 0) {
             bavg = bavg/bamt;
-          }
+          } else {bavg = 0;}
 	  rgb[3*curr_index] = bayer[curr_index];
           rgb[1+3*curr_index] = gavg;
           rgb[2+3*curr_index] = bavg;
@@ -151,7 +152,7 @@ void demosaic(
               bamt += 1;
 	      bavg += bayer[t];
             }
-            if (y!=height-1) {
+            if (y!=height) {
 	      bamt += 1;
 	      bavg += bayer[b];
 	    }
@@ -159,22 +160,22 @@ void demosaic(
 	      ramt += 1;
 	      ravg += bayer[l];
 	    }
-            if (x!=width-1) {
+            if (x!=width) {
 	      ramt += 1;
 	      ravg += bayer[r];
 	    }
 	    if (ramt != 0) {
                 ravg = ravg/ramt;
-            }
+            } else {ravg = 0;}
             if (bamt != 0) {
                 bavg = bavg/bamt;
-            }
+            } else {bavg = 0;}
             rgb[3*curr_index] = ravg;
             rgb[1+3*curr_index] = bayer[curr_index];
             rgb[2+3*curr_index] = bavg;
 	}
       }
-      curr_index++;
+      //curr_index++;
     }
   }
 }
